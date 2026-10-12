@@ -1,0 +1,13 @@
+﻿{
+  "name": "readoro",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "test": "node --test tests/**/*.test.js",
+    "test:sim": "node --test tests/simulation/*.test.js"
+  }
+}
