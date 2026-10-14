@@ -1,20 +1,4 @@
-﻿// Normalized exercise data for the Readoro simulation engine.
-// Shape mirrors Readora's server/sourced-content.js exercise objects:
-//   { id, title, level, category, description, minutes, source,
-//     published, baseline, sections: [{ id, title, questions: [...] }] }
-//
-// Fields intentionally dropped (simulation does not need them):
-//   - section.text
-//   - question.prompt / question.options / question.explanation
-// Only question.skill and question.correctIndex matter for simulated scoring.
-//
-// When Readora is forked into Readoro, this file can be replaced with a
-// build-time transform reading ../content/passages.json and
-// ../server/sourced-content.js. The engine depends only on the shape.
-//
-// Difficulty VALUE per level is resolved by lib/ability.js:
-//   Beginner 0.35 | Intermediate 0.60 | Advanced 0.85
-
+﻿
 export const EXERCISES = [
   {
     id: "baseline",

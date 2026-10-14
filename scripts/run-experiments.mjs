@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-/** Generate a complete, reproducible simulation handoff; no external packages. */
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { runExperiment, runSensitivity, DEFAULT_EXPERIMENT } from '../simulation/experiment.js';
