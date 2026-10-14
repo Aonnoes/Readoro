@@ -1,12 +1,13 @@
-﻿{
+{
   "name": "readoro",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "engines": {
-    "node": ">=22.13"
-  },
+  "engines": { "node": ">=22.13" },
   "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "results": "node scripts/run-experiments.mjs --sensitivity",
     "test": "node --test tests/**/*.test.js",
     "test:sim": "node --test tests/simulation/*.test.js"
   }
