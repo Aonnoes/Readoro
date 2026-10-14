@@ -1,0 +1,314 @@
+{
+  "config": {
+    "learners": 100,
+    "activitiesPerLearner": 10,
+    "trials": 20,
+    "seed": 12345,
+    "baselineQuestions": 8,
+    "learningRate": 0.02,
+    "slope": 6,
+    "initialAbilityMean": 0.55,
+    "initialAbilitySd": 0.15,
+    "fixedDifficulty": "Intermediate"
+  },
+  "base": {
+    "id": "default",
+    "name": "All defaults",
+    "overrides": {},
+    "fixed": {
+      "mean": 55.4625,
+      "low": 54.58999596151612,
+      "high": 56.33500403848388,
+      "margin": 0.8725040384838838,
+      "n": 20
+    },
+    "adaptive": {
+      "mean": 57.6375,
+      "low": 56.81454745100378,
+      "high": 58.46045254899622,
+      "margin": 0.8229525489962208,
+      "n": 20
+    },
+    "difference": {
+      "mean": 2.175,
+      "low": 1.0750482590642878,
+      "high": 3.2749517409357116,
+      "margin": 1.099951740935712,
+      "n": 20
+    },
+    "adaptiveWins": 15,
+    "trials": 20
+  },
+  "cases": [
+    {
+      "id": "fixed-beginner",
+      "name": "Fixed Beginner",
+      "overrides": {
+        "fixedDifficulty": "Beginner"
+      },
+      "fixed": {
+        "mean": 63.25625,
+        "low": 62.305428797514075,
+        "high": 64.20707120248592,
+        "margin": 0.9508212024859255,
+        "n": 20
+      },
+      "adaptive": {
+        "mean": 57.6375,
+        "low": 56.81454745100378,
+        "high": 58.46045254899622,
+        "margin": 0.8229525489962208,
+        "n": 20
+      },
+      "difference": {
+        "mean": -5.61875,
+        "low": -6.820002856862483,
+        "high": -4.417497143137518,
+        "margin": 1.2012528568624825,
+        "n": 20
+      },
+      "adaptiveWins": 0,
+      "trials": 20
+    },
+    {
+      "id": "fixed-advanced",
+      "name": "Fixed Advanced",
+      "overrides": {
+        "fixedDifficulty": "Advanced"
+      },
+      "fixed": {
+        "mean": 48.3875,
+        "low": 47.57091969969833,
+        "high": 49.204080300301676,
+        "margin": 0.8165803003016706,
+        "n": 20
+      },
+      "adaptive": {
+        "mean": 57.6375,
+        "low": 56.81454745100378,
+        "high": 58.46045254899622,
+        "margin": 0.8229525489962208,
+        "n": 20
+      },
+      "difference": {
+        "mean": 9.25,
+        "low": 8.084437176029798,
+        "high": 10.415562823970202,
+        "margin": 1.165562823970201,
+        "n": 20
+      },
+      "adaptiveWins": 20,
+      "trials": 20
+    },
+    {
+      "id": "learning-0",
+      "name": "Learning rate 0",
+      "overrides": {
+        "learningRate": 0
+      },
+      "fixed": {
+        "mean": 43.93125,
+        "low": 43.246510571709685,
+        "high": 44.61598942829031,
+        "margin": 0.6847394282903165,
+        "n": 20
+      },
+      "adaptive": {
+        "mean": 43.8375,
+        "low": 42.9888576896358,
+        "high": 44.6861423103642,
+        "margin": 0.8486423103641997,
+        "n": 20
+      },
+      "difference": {
+        "mean": -0.09375,
+        "low": -1.3374972099679854,
+        "high": 1.1499972099679854,
+        "margin": 1.2437472099679854,
+        "n": 20
+      },
+      "adaptiveWins": 8,
+      "trials": 20
+    },
+    {
+      "id": "learning-001",
+      "name": "Learning rate 0.01",
+      "overrides": {
+        "learningRate": 0.01
+      },
+      "fixed": {
+        "mean": 49.51875,
+        "low": 48.67753198355307,
+        "high": 50.35996801644693,
+        "margin": 0.8412180164469276,
+        "n": 20
+      },
+      "adaptive": {
+        "mean": 50.75,
+        "low": 49.92987588940862,
+        "high": 51.57012411059138,
+        "margin": 0.820124110591382,
+        "n": 20
+      },
+      "difference": {
+        "mean": 1.23125,
+        "low": 0.04754972962517656,
+        "high": 2.414950270374823,
+        "margin": 1.1837002703748234,
+        "n": 20
+      },
+      "adaptiveWins": 15,
+      "trials": 20
+    },
+    {
+      "id": "learning-004",
+      "name": "Learning rate 0.04",
+      "overrides": {
+        "learningRate": 0.04
+      },
+      "fixed": {
+        "mean": 66.73125,
+        "low": 65.70222119662984,
+        "high": 67.76027880337017,
+        "margin": 1.0290288033701631,
+        "n": 20
+      },
+      "adaptive": {
+        "mean": 70.0375,
+        "low": 69.05488606191616,
+        "high": 71.02011393808382,
+        "margin": 0.9826139380838353,
+        "n": 20
+      },
+      "difference": {
+        "mean": 3.30625,
+        "low": 2.207105079253627,
+        "high": 4.405394920746373,
+        "margin": 1.0991449207463726,
+        "n": 20
+      },
+      "adaptiveWins": 19,
+      "trials": 20
+    },
+    {
+      "id": "slope-3",
+      "name": "Response slope 3",
+      "overrides": {
+        "slope": 3
+      },
+      "fixed": {
+        "mean": 53.54375,
+        "low": 52.8322284127905,
+        "high": 54.255271587209506,
+        "margin": 0.711521587209506,
+        "n": 20
+      },
+      "adaptive": {
+        "mean": 54.0625,
+        "low": 53.41396134667271,
+        "high": 54.71103865332729,
+        "margin": 0.6485386533272933,
+        "n": 20
+      },
+      "difference": {
+        "mean": 0.51875,
+        "low": -0.508000656751266,
+        "high": 1.5455006567512661,
+        "margin": 1.026750656751266,
+        "n": 20
+      },
+      "adaptiveWins": 11,
+      "trials": 20
+    },
+    {
+      "id": "slope-10",
+      "name": "Response slope 10",
+      "overrides": {
+        "slope": 10
+      },
+      "fixed": {
+        "mean": 56.275,
+        "low": 55.35437774947879,
+        "high": 57.195622250521204,
+        "margin": 0.9206222505212053,
+        "n": 20
+      },
+      "adaptive": {
+        "mean": 60.38125,
+        "low": 59.599245748441426,
+        "high": 61.16325425155858,
+        "margin": 0.7820042515585746,
+        "n": 20
+      },
+      "difference": {
+        "mean": 4.10625,
+        "low": 3.160786275027018,
+        "high": 5.051713724972982,
+        "margin": 0.9454637249729825,
+        "n": 20
+      },
+      "adaptiveWins": 19,
+      "trials": 20
+    },
+    {
+      "id": "ability-040",
+      "name": "Initial ability mean 0.40",
+      "overrides": {
+        "initialAbilityMean": 0.4
+      },
+      "fixed": {
+        "mean": 33.275,
+        "low": 32.62421548668092,
+        "high": 33.92578451331908,
+        "margin": 0.6507845133190783,
+        "n": 20
+      },
+      "adaptive": {
+        "mean": 38.7375,
+        "low": 37.874377998033104,
+        "high": 39.60062200196689,
+        "margin": 0.8631220019668917,
+        "n": 20
+      },
+      "difference": {
+        "mean": 5.4625,
+        "low": 4.23504769039598,
+        "high": 6.6899523096040205,
+        "margin": 1.2274523096040206,
+        "n": 20
+      },
+      "adaptiveWins": 20,
+      "trials": 20
+    },
+    {
+      "id": "ability-070",
+      "name": "Initial ability mean 0.70",
+      "overrides": {
+        "initialAbilityMean": 0.7
+      },
+      "fixed": {
+        "mean": 75.80625,
+        "low": 75.09063895697602,
+        "high": 76.52186104302399,
+        "margin": 0.7156110430239853,
+        "n": 20
+      },
+      "adaptive": {
+        "mean": 75.15625,
+        "low": 74.33111699166466,
+        "high": 75.98138300833534,
+        "margin": 0.8251330083353453,
+        "n": 20
+      },
+      "difference": {
+        "mean": -0.65,
+        "low": -1.5340915850662054,
+        "high": 0.23409158506620542,
+        "margin": 0.8840915850662054,
+        "n": 20
+      },
+      "adaptiveWins": 7,
+      "trials": 20
+    }
+  ]
+}
