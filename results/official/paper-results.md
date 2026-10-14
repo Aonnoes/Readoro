@@ -1,4 +1,4 @@
-# Readoro — Official Simulation Results and Paper Handoff
+# Readoro - Simulation Results and Analysis
 
 > **Reproducible synthetic experiment.** Generated from the Readoro Monte Carlo engine. These are not observations of real students. This is a finalized **run of the stated configuration**, not an empirically validated model. If the engine or configuration changes, regenerate all results and revise the paper together.
 
@@ -15,13 +15,13 @@
 - Reading levels use the **unrounded** overall ratio: Beginner <50%, Intermediate 50%–<75%, Advanced ≥75%.
 - Outcomes are averaged **across trials**, with two-sided **95% Student-t confidence intervals for trial-level means** (df = 19); scenario differences use **paired per-trial differences**, not independent CIs.
 
-## Section 4.3 — Simulation procedure
+## Section 4.3 - Simulation procedure
 
 The study executed 20 Monte Carlo trials with 100 synthetic virtual learners in each trial. Within each trial, both scenarios received identical initial skill profiles and baseline assessment results, then completed 10 practice activities. Fixed difficulty remained Intermediate, whereas the adaptive strategy reassigned practice difficulty in response to each learner's cumulative simulated performance. Each scenario completed an 8-item Intermediate final assessment without further ability updates. Trial-level mean outcomes were aggregated with 95% confidence intervals. Nine one-at-a-time sensitivity cases were also run using the same seed sequence and changing only the listed parameter.
 
-## Section 4.4 — Results
+## Section 4.4 - Results
 
-### Table 4.1 — Fixed versus adaptive outcomes (trial means, 95% CI)
+### Table 4.1 - Fixed versus adaptive outcomes (trial means, 95% CI)
 
 | Metric | Fixed | Adaptive | Adaptive − Fixed |
 | --- | --- | --- | --- |
@@ -36,7 +36,7 @@ Adaptive finished above fixed in **15/20** trials (fixed ahead: 5; ties: 0). The
 
 **Practice difficulty allocation:** Fixed: Beginner 0.0%, Intermediate 100.0%, Advanced 0.0%. Adaptive: Beginner 27.4%, Intermediate 71.2%, Advanced 1.4%. Because the two strategies use different practice difficulties, their raw practice accuracies are **not like-for-like effectiveness measurements**.
 
-### Table 4.2 — Comprehension skills
+### Table 4.2 - Comprehension skills
 
 | Comprehension skill | Baseline (%) | Final fixed (%) | Final adaptive (%) | Ability Δ fixed | Ability Δ adaptive |
 | --- | --- | --- | --- | --- | --- |
@@ -72,7 +72,7 @@ Reading-level advancement can occur **without modeled learning** because baselin
 | 9 | 52.0 [50.9–53.1] | 58.4 [57.2–59.5] |
 | 10 | 52.2 [51.2–53.2] | 59.1 [57.8–60.3] |
 
-### Table 4.3 — Sensitivity analysis (one change at a time)
+### Table 4.3 - Sensitivity analysis (one change at a time)
 
 | Parameter changed | Fixed final (%) | Adaptive final (%) | Difference [95% CI] | Adaptive wins |
 | --- | --- | --- | --- | --- |
@@ -89,7 +89,7 @@ Reading-level advancement can occur **without modeled learning** because baselin
 
 The default case is the first row. Every sensitivity case uses the same 20 seeds and leaves all other parameters unchanged.
 
-## Section 4.5 — Analysis of results
+## Section 4.5 - Analysis of results
 
 Under the specified simulated assumptions, adaptive difficulty reached a higher final assessment average (**57.6%**) than fixed Intermediate difficulty (**55.5%**), a paired trial-mean difference of **2.2 percentage points** (95% CI **1.1 to 3.3**). Both strategies began at **43.8%** because they used the same baseline answers within each learner pair. The adaptive strategy assigned more practice at Beginner difficulty, which increased the probability of correct practice responses under the model's logistic rule. Because the learning rule increases skill ability only after a correct practice answer, easier practice can create a mechanical advantage.
 
