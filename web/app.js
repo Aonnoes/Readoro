@@ -54,13 +54,40 @@ function render(exp,sens){
     <section class="panel notes"><strong>Interpretation boundary</strong><p>The score difference reflects the assumed response model and learning rule. Easier practice produces more correct responses and therefore more modeled ability gains. These results do not establish a real educational effect.</p></section>`;
   downloads(exp,sens,figs);
 }
+// Navigation changes the displayed view without changing the DOM order or
+// jumping to an anchor. Repeated clicks keep the sidebar in the same position.
+const viewNames = {lab:'Simulation Lab', parameters:'Parameters', results:'Results', exports:'Exports'};
+function showView(requested, updateHash = false) {
+  const view = Object.hasOwn(viewNames, requested) ? requested : 'lab';
+  $('.workspace').dataset.view = view;
+  $('#current-view-name').textContent = viewNames[view];
+  document.querySelectorAll('.sidebar-nav .sidebar-link').forEach(link => {
+    const active = link.dataset.view === view;
+    link.classList.toggle('active', active);
+    if (active) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  });
+  if (updateHash && location.hash !== `#${view}`) {
+    history.replaceState(null, '', `#${view}`);
+  }
+  window.scrollTo(0, 0);
+}
+document.querySelectorAll('.sidebar-brand[data-view], .sidebar-nav .sidebar-link[data-view]').forEach(link => {
+  link.addEventListener('click', event => {
+    event.preventDefault();
+    showView(link.dataset.view, true);
+  });
+});
+window.addEventListener('hashchange', () => showView(location.hash.slice(1)));
+showView(location.hash.slice(1));
+
 $('#settings').addEventListener('submit',event=>{
   event.preventDefault();
   const button=$('#run');const status=$('#status');button.disabled=true;status.textContent='Running paired trials and sensitivity experiments…';
   // Yield first so the busy state renders before the synchronous simulation work.
   requestAnimationFrame(()=>setTimeout(()=>{
     try {const config=settings();const exp=runExperiment(config,{includeLearners:true});const sens=runSensitivity(config);
-      render(exp,sens);status.textContent=`Completed ${config.trials} trials, ${sens.cases.length} sensitivity cases. Outputs are ready to export.`;
+      render(exp,sens);status.textContent=`Completed ${config.trials} trials, ${sens.cases.length} sensitivity cases. Outputs are ready to export.`;showView('results',true);
     } catch(err){status.textContent=`Error: ${err.message}`;console.error(err);}
     finally {button.disabled=false;}
   },20));
