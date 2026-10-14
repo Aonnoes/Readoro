@@ -27,13 +27,13 @@ Reading Comprehension Performance Under Fixed and Adaptive Difficulty: A Simulat
 
 4. Open **http://localhost:3000** in your browser.
 
-If port 3000 is already in use, run the following in PowerShell:
+If error occurs or port 3000 is already in use, run the following in PowerShell:
 
 ```powershell
 $env:PORT=3001
 npm run dev
 ```
 
-Then open **http://localhost:3001**.
+Then open **http://localhost:3001**
 
 To stop the server, press `Ctrl + C` in the terminal.
