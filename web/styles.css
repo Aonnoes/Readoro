@@ -178,3 +178,54 @@ footer{margin:35px 0 28px;color:#93a087;font-size:11px;line-height:1.8}
   .sidebar-link{font-size:11px;padding:8px 7px}
   #download-buttons{grid-template-columns:1fr}
 }
+<<<<<<< HEAD
+=======
+
+/* Group export downloads by category */
+.export-group {
+  margin-top: 1.25rem;
+}
+
+.export-group:first-child {
+  margin-top: 0;
+}
+
+.export-group-title {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.export-group-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.secondary-btn {
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1ddd7;
+  border-radius: 8px;
+  background: #fff;
+  color: #205e4b;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.secondary-btn:hover {
+  background: #f1f7f3;
+}
+
+.secondary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+>>>>>>> d7badd0 (Updated UI for Readoro)
