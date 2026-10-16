@@ -2,6 +2,10 @@
 
 Reading Comprehension Performance Under Fixed and Adaptive Difficulty: A Simulation Study
 
+## Live Demo
+
+Rebuilt automatically on every push to `main`: **https://aonnoes.github.io/Readoro/**
+
 ## Running Locally
 
 **Requirements:** Node.js 22.13 or later and Git.
