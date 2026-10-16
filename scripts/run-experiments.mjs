@@ -1,43 +1,42 @@
 #!/usr/bin/env node
+// Regenerates results/official from the engine. Usage: npm run results [-- --trials=30 --seed=7]
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { runExperiment, runSensitivity, DEFAULT_EXPERIMENT } from '../simulation/experiment.js';
-import { paperReport, summaryCsvRows, trialCsvRows, sensitivityCsvRows, toCsv, buildFigures } from '../simulation/reporting.js';
+import { runExperiment, runSensitivity } from '../simulation/experiment.js';
+import { resultFiles } from '../simulation/reporting.js';
 
-const args=process.argv.slice(2);
-const options={};
-for(const arg of args){
-  if(arg==='--sensitivity')continue;
-  const match=arg.match(/^--([a-z-]+)=(.+)$/);
-  if(!match)throw new Error(`Unknown argument ${arg}`);
-  const map={'seed':'seed','trials':'trials','learners':'learners','activities':'activitiesPerLearner',
-    'learning-rate':'learningRate','slope':'slope','ability-mean':'initialAbilityMean','ability-sd':'initialAbilitySd','fixed':'fixedDifficulty'};
-  const key=map[match[1]];
-  if(!key)throw new Error(`Unknown option --${match[1]}`);
-  options[key]=key==='fixedDifficulty'?match[2]:Number(match[2]);
-}
-const outDir=resolve('results','official');
-const exp=runExperiment(options,{includeLearners:true});
-const sensitivity=runSensitivity(options);
-await mkdir(outDir,{recursive:true});
-const files={
-  'experiment.json':JSON.stringify({config:exp.config,trialResults:exp.trialResults,summary:exp.summary},null,2)+'\n',
-  'sensitivity.json':JSON.stringify(sensitivity,null,2)+'\n',
-  'summary.csv':toCsv(summaryCsvRows(exp)),
-  'trials.csv':toCsv(trialCsvRows(exp)),
-  'sensitivity.csv':toCsv(sensitivityCsvRows(sensitivity)),
-  'learner-records.csv':toCsv(exp.learners),
-  'paper-results.md':paperReport(exp,sensitivity),
-  ...buildFigures(exp,sensitivity),
+const OPTIONS = {
+  seed: 'seed', trials: 'trials', learners: 'learners', activities: 'activitiesPerLearner',
+  'learning-rate': 'learningRate', slope: 'slope', 'ability-mean': 'initialAbilityMean',
+  'ability-sd': 'initialAbilitySd', fixed: 'fixedDifficulty',
 };
-for(const [filename,content] of Object.entries(files)){
-  await writeFile(resolve(outDir,filename),content,'utf8');
+
+function parseArgs(args) {
+  const overrides = {};
+  for (const arg of args) {
+    if (arg === '--sensitivity') continue; // always on now; kept so old commands still work
+    const [, name, value] = arg.match(/^--([a-z-]+)=(.+)$/) ?? [];
+    if (!name) throw new Error(`Unknown argument ${arg}`);
+    const key = OPTIONS[name];
+    if (!key) throw new Error(`Unknown option --${name}`);
+    overrides[key] = key === 'fixedDifficulty' ? value : Number(value);
+  }
+  return overrides;
 }
-const c=exp.summary.comparison.final;
-console.log('READORO — REPRODUCIBLE RESULTS');
-console.log(`Configuration: ${exp.config.trials} trials × ${exp.config.learners} learners × ${exp.config.activitiesPerLearner} activities`);
-console.log(`Trial seeds: ${exp.config.seed}–${exp.config.seed+exp.config.trials-1}`);
-console.log(`Fixed: ${c.fixed.mean.toFixed(2)}% | Adaptive: ${c.adaptive.mean.toFixed(2)}%`);
-console.log(`Adaptive − Fixed: ${c.difference.mean.toFixed(2)} [${c.difference.low.toFixed(2)}, ${c.difference.high.toFixed(2)}] pp`);
-console.log(`Adaptive wins: ${exp.summary.adaptiveWins}/${exp.config.trials}`);
-console.log(`Generated ${Object.keys(files).length} files in ${outDir}`);
+
+const overrides = parseArgs(process.argv.slice(2));
+const experiment = runExperiment(overrides, { includeLearners: true });
+const sensitivity = runSensitivity(overrides, experiment);
+const files = resultFiles(experiment, sensitivity);
+
+const outDir = resolve('results', 'official');
+await mkdir(outDir, { recursive: true });
+await Promise.all(Object.entries(files).map(([name, text]) => writeFile(resolve(outDir, name), text, 'utf8')));
+
+const { config, summary } = experiment;
+const { fixed, adaptive, difference } = summary.comparison.final;
+console.log('READORO - fresh numbers, zero real students involved');
+console.log(`${config.trials} trials x ${config.learners} learners x ${config.activitiesPerLearner} activities, seeds ${config.seed}-${config.seed + config.trials - 1}`);
+console.log(`Fixed ${fixed.mean.toFixed(2)}%  |  Adaptive ${adaptive.mean.toFixed(2)}%`);
+console.log(`Adaptive - Fixed: ${difference.mean.toFixed(2)} [${difference.low.toFixed(2)}, ${difference.high.toFixed(2)}] pp, adaptive won ${summary.adaptiveWins}/${config.trials}`);
+console.log(`Wrote ${Object.keys(files).length} files to ${outDir}`);

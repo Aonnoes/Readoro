@@ -7,8 +7,9 @@
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js",
-    "results": "node scripts/run-experiments.mjs --sensitivity",
-    "test": "node --test tests/**/*.test.js",
-    "test:sim": "node --test tests/simulation/*.test.js"
+    "results": "node scripts/run-experiments.mjs",
+    "verify": "node scripts/verify-results.mjs",
+    "test": "node --test \"tests/**/*.test.js\"",
+    "test:sim": "node --test \"tests/simulation/*.test.js\""
   }
 }
