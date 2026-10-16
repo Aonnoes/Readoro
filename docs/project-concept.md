@@ -57,9 +57,9 @@ Both scenarios use equivalent initial learner profiles and evaluation conditions
 
 ### 4. Testing and Results - Member 10
 
-- [ ] Develop verification tests for response probabilities, scoring, difficulty adjustments, and progression.
-- [ ] Run repeated simulation trials, baseline/final comparisons, and sensitivity analysis.
-- [ ] Generate comparison metrics, learner records, and downloadable CSV results.
+- [x] Develop verification tests for response probabilities, scoring, difficulty adjustments, and progression.
+- [x] Run repeated simulation trials, baseline/final comparisons, and sensitivity analysis.
+- [x] Generate comparison metrics, learner records, and downloadable CSV results.
 
 ### 5. Finalization - All Developers
 
