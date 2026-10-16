@@ -11,9 +11,11 @@ const port=Number(process.env.PORT || 3000);
 createServer(async (req,res)=>{
   try {
     const path=new URL(req.url,'http://localhost').pathname;
-    const file=resolve(ROOT,'.'+(path==='/'?'/web/index.html':decodeURIComponent(path)));
+    // Relative asset paths (needed for GitHub Pages) only work from /web/, so send visitors there.
+    if(path==='/'||path==='/web/'){res.writeHead(302,{Location:'/web/index.html'});res.end();return;}
+    const file=resolve(ROOT,'.'+decodeURIComponent(path));
     const rel=relative(ROOT,file);
-    if(rel.startsWith('..')||isAbsolute(rel)|| !['/web/','/simulation/','/results/'].some(p=>path.startsWith(p)) && path!=='/'){
+    if(rel.startsWith('..')||isAbsolute(rel)|| !['/web/','/simulation/','/results/'].some(p=>path.startsWith(p))){
       res.writeHead(403);res.end('Forbidden');return;
     }
     if(!CONTENT[extname(file)]){res.writeHead(415);res.end('Unsupported');return;}

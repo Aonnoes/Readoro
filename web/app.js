@@ -1,5 +1,5 @@
-import { runExperiment, runSensitivity } from '/simulation/experiment.js';
-import { buildFigures, fixed, interval, toCsv, trialCsvRows, summaryCsvRows, sensitivityCsvRows, paperReport } from '/simulation/reporting.js';
+import { runExperiment, runSensitivity } from '../simulation/experiment.js';
+import { buildFigures, fixed, interval, toCsv, trialCsvRows, summaryCsvRows, sensitivityCsvRows, paperReport } from '../simulation/reporting.js';
 
 const $=s=>document.querySelector(s);
 const escapeHtml=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
