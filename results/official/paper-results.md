@@ -121,4 +121,4 @@ Sensitivity experiments demonstrate that this advantage is conditional: Fixed Be
 - `experiment.json`: exact configuration, trial statistics, summary results.
 - `sensitivity.json`: full sensitivity output.
 - `figure-4-5.svg`, `figure-4-6.svg`, `figure-4-7.svg`, `figure-4-8.svg`: regenerable vector figures.
-- Run `npm test` and `node scripts/run-experiments.mjs --sensitivity` to verify and regenerate.
+- Run `npm test` and `npm run results` to verify and regenerate, or `npm run verify` to check that these files still match the engine.
